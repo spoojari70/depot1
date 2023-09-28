@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   has_many :line_items
 
-  before_destory :ensure_not_referenced_by_any_line_item
+  before_destroy :ensure_not_referenced_by_any_line_item
 
   validates :title, :decription, :image_url, presence: true
   validates :title, uniqueness: true
@@ -13,8 +13,8 @@ class Product < ApplicationRecord
 
 
   private
-  #This is a hook method 
-  # ensure that there are no line items references this product
+
+  #  This is a hook method ---> ensure that there are no line items references this product
   def ensure_not_referenced_by_any_line_item
     unless line_items.empty?
     errors.add(:base, 'Line Items present')
