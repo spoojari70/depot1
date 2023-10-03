@@ -21,8 +21,11 @@
       <% if session[:cart_id].present? %>
         <div class="cart-button">
           <%= link_to "Cart", cart_path(session[:cart_id]), class: "button" %>
-          <%= total_cart_item %>
+          <article>
+            <%= total_cart_item %>
+          </article>
         </div>
+
       <% else %>
         <!-- Handle the case when session[:cart_id] is not present -->
         <p>Cart is empty</p>
@@ -32,14 +35,9 @@
 
     <section class="content">
       <nav class="side_nav">
-        <% if @cart.present? %>
-          <div id="cart" class="carts">
-            <%= render @cart %>
-          </div>
-        <% else %>
-          <!-- Handle the case when @cart is nil -->
-          <p>Your cart is empty</p>
-        <% end %>
+        <div id="cart" class="carts">
+          <%= render_if @cart && @cart.line_items.any?, @cart %>
+        </div>
 
         <ul>
           <li><a href="/">Home</a></li>
