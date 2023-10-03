@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title> Your Book Store </title>
-     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
+  <head>
+    <title>
+      Your Book Store
+    </title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application",
+    media: "all",
+    "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+  </head>
 
-<body>
-  <header class='main'>
-    <%= image_tag "logo.svg" , alt: "Your Book Store" %>
+  <body>
+    <header class='main'>
+      <%= image_tag "logo.svg", alt: "Your Book Store" %>
       <h1>
         <%= @page_title %>
       </h1>
-      <div class="cart-button">
-        <%= link_to "Cart" , cart_path(session[:cart_id]), class: "button" %>
+      <% if session[:cart_id].present? %>
+        <div class="cart-button">
+          <%= link_to "Cart", cart_path(session[:cart_id]), class: "button" %>
           <%= total_cart_item %>
-            </p>
-      </div>
-  </header>
+        </div>
+      <% else %>
+        <!-- Handle the case when session[:cart_id] is not present -->
+        <p>Cart is empty</p>
+      <% end %>
 
+    </header>
 
-  <section class="content">
-    <nav class="side_nav">
-      <div id="cart" class="carts">
-        <%= render @cart %>
-      </div>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/">Questions</a></li>
-        <li><a href="/">News</a></li>
-        <li><a href="/">Contact</a></li>
-      </ul>
-    </nav>
-    <main class='<%= controller.controller_name %>'>
-      <%= yield %>
-    </main>
-  </section>
-</body>
+    <section class="content">
+      <nav class="side_nav">
+        <% if @cart.present? %>
+          <div id="cart" class="carts">
+            <%= render @cart %>
+          </div>
+        <% else %>
+          <!-- Handle the case when @cart is nil -->
+          <p>Your cart is empty</p>
+        <% end %>
+
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/">Questions</a></li>
+          <li><a href="/">News</a></li>
+          <li><a href="/">Contact</a></li>
+        </ul>
+      </nav>
+      <main class='<%= controller.controller_name %>'>
+        <%= yield %>
+      </main>
+    </section>
+  </body>
 
 </html>

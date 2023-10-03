@@ -8,16 +8,24 @@
 <p>Total Items in Cart: <%= total_cart_item %></p>
 
 <table>
-<% @cart.line_items.each do |line_item| %>
-<tr>
-<td class="quantity"><%= line_item.quantity %></td>
-<td><%= line_item.product.title %></td>
-<td class="price"><%= number_to_currency(line_item.total_price) %></td>
-</tr>
-<% end %>
-
-
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Product</th>
+      <th>Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart.line_items.each do |line_item| %>
+      <tr>
+        <td class="quantity"><%= line_item.quantity %></td>
+        <td><%= line_item.product.title %></td>
+        <td class="price"><%= number_to_currency(line_item.total_price) %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+
 
 <%= button_to 'Empty cart', @cart,
    method: :delete,
