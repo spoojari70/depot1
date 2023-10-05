@@ -1,3 +1,4 @@
+<article>
 <!DOCTYPE html>
 <html>
 
@@ -21,9 +22,7 @@
       <% if session[:cart_id].present? %>
         <div class="cart-button">
           <%= link_to "Cart", cart_path(session[:cart_id]), class: "button" %>
-          <article>
-            <%= total_cart_item %>
-          </article>
+            <div><span id="cart-quantity",  remote: true><%= total_cart_item %></span></div> 
         </div>
 
       <% else %>
@@ -53,3 +52,4 @@
   </body>
 
 </html>
+</article>
