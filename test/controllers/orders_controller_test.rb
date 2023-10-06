@@ -51,6 +51,6 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
       delete order_url(@order)
     end
 
-    assert_redirected_to orders_url
+    assert_redirected_to store_index_url
   end
 end

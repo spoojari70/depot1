@@ -2,7 +2,7 @@ cart = document.getElementById("cart")
 cart.innerHTML = "<%= j render(@cart)%>"
 
 
-$("#cart").html("<%= j render(@cart) %>") 
+$("#cart-quantity").html("<%= total_cart_item %>") 
 
 notice = document.getElementById("notice")
 if (notice) notice.style.display = "none"
