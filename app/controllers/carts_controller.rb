@@ -7,7 +7,7 @@ class CartsController < ApplicationController
   end
 
   def show
-   
+
   end
 
   def new
@@ -15,7 +15,7 @@ class CartsController < ApplicationController
   end
 
   def edit
-  end
+  end 
 
   def create
     @cart = Cart.new(cart_params)
