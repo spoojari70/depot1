@@ -37,18 +37,14 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        OrderMailer.received(@order).deliver_later
+        #OrderMailer.received(@order).deliver_later
+        @order.change!(pay_type_params)
         format.html { redirect_to store_index_url, notice: "Thank you for your order." }
         format.json { render :show, status: :created, location: @order }
-      else
+        else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-      # begin
-      # rescue ActiveRecord::NotNullViolation => e
-      #   format.html { redirect_to store_index_url, notice: "Error: Some required fields were not provided." }
-      #   format.json { render json: { error: "Some required fields were not provided." }, status: :unprocessable_entity }
-      # end
     end
   end
 
