@@ -36,6 +36,9 @@ end
     when "Purchase order"
       payment_method = :po
       payment_details[:po_num] = pay_type_params[:po_number]
+    when :cod
+      Rails.logger.info "Processing purchase order: " +
+        payment_details.fetch(:cod_num).to_s
     end
 
     payment_result = Pago.make_payment(
@@ -50,4 +53,3 @@ end
       raise payment_result.error
     end
   end
-end

@@ -27,4 +27,3 @@ class Pago
     OpenStruct.new(succeeded?: true)
     end
   end
-end
