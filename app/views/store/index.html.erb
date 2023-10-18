@@ -1,6 +1,9 @@
 <% if notice %>
   <aside id="notice"><%= notice %></aside>
 <% end %>
+
+<h1><%= t('.title_html') %></h1>
+
 <h1>Your Book Store</h1>
 <ul class="catalog">
   <% cache @products do %>
@@ -14,6 +17,9 @@
           </p>
           <div class="price">
             <%= number_to_currency(product.price) %>
+            <%= button_to t('.add_html'), line_items_path(product_id: product),
+            remote: true %>
+
           </div>
             <%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
         </li>
