@@ -1,10 +1,10 @@
 <% if notice %>
-  <aside id="notice"><%= notice %></aside>
+  <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
 <h1><%= t('.title_html') %></h1>
 
-<h1>Your Book Store</h1>
+
 <ul class="catalog">
   <% cache @products do %>
     <% @products.each do |product| %>
@@ -16,12 +16,11 @@
             <%= sanitize(product.decription) %>
           </p>
           <div class="price">
-            <%= number_to_currency(product.price) %>
-            <%= button_to t('.add_html'), line_items_path(product_id: product),
-            remote: true %>
-
+            <%= number_to_currency(product.price,  locale: I18n.locale) %>
           </div>
-            <%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
+            <%= button_to t('.add_html'), 
+            line_items_path(product_id: product, locale: I18n.locale),
+            remote: true %>
         </li>
       <% end %>
     <% end %>
