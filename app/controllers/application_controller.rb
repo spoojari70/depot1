@@ -1,14 +1,22 @@
 class ApplicationController < ActionController::Base
   before_action :set_i18n_locale_from_params
 
-  before_action :authorize
+  # before_action :authorize
+  before_action :authorize_admin
+
 
   protected
-    def authorize
-      unless User.find_by(id: session[:user_id])
-        redirect_to login_url, notice: "Please log in"
-      end
-    end
+    #  def authorize
+    #    unless User.find_by(id: session[:user_id])
+    #      redirect_to login_url, notice: "Please log in"
+    #    end
+    #  end
+
+     def authorize_admin
+       unless session[:user_id] && User.exists?(session[:user_id]) && User.find(session[:user_id]).admin == 1
+         redirect_to login_url
+       end
+     end
 
     def set_i18n_locale_from_params
       if params[:locale]

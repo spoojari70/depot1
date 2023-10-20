@@ -32,6 +32,11 @@
                             size: 40 %>
   </div>
 
+    <div class="field">
+      <%= form.label :admin, "Are you an admin?"%>
+      <%= form.check_box :admin, { checked: @user.admin == 1 } %>
+    </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

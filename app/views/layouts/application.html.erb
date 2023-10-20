@@ -45,7 +45,7 @@
           <li><a href="/contact"><%= t('.contact') %></a></li>
         </ul>
 
-        <% if session[:user_id] %>
+        <% if session[:user_id]  %>
         <nav class="logged_in_nav">
           <ul>
           <li><%= link_to 'Orders', orders_path %></li>
