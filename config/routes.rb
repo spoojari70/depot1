@@ -14,10 +14,12 @@ Rails.application.routes.draw do
     get :who_bought, on: :member
   end
 
+  resources :support_requests, only: [ :index, :update ]
+
   scope '(:locale)' do
-  resources :orders
-  resources :line_items
-  resources :carts
-  root 'store#index', as: 'store_index'
+    resources :orders
+    resources :line_items
+    resources :carts
+    root 'store#index', as: 'store_index'
   end
 end

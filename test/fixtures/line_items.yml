@@ -1,7 +1,7 @@
-one: 
-product: two
-cart: one
+one:
+  product: two
+  cart: one
 
-two: 
-product: ruby
-cart: one
+two:
+  product: ruby
+  order: one
