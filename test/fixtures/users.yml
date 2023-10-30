@@ -3,7 +3,8 @@
 one:
   name: dave
   password_digest: <%= BCrypt::Password.create("secret") %>
-
+  admin: 0
 two:
   name: susannah
   password_digest: <%= BCrypt::Password.create("secret") %>
+  admin: 1

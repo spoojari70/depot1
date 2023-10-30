@@ -16,7 +16,7 @@
     I18n.defaultLocale = "<%= I18n.default_locale %>";
     I18n.locale = "<%= I18n.locale %>";
   </script>
-  <%= javascript_include_tag 'locale_switcher', "data-turbolinks-track": "reload" %>
+  <%# <%= javascript_include_tag 'locale_switcher', "data-turbolinks-track": "reload" %>
 
   <body>
     <header class='main' >
@@ -24,8 +24,7 @@
         <%= form_tag store_index_path, class: 'locale', method: :GET do %>
           <%= select_tag 'set_locale', 
             options_for_select(LANGUAGES, I18n.locale.to_s),
-            onchange: 'this.form.submit()' %>
-          <%# <%= submit_tag 'submit', id: "submit_locale_change" %> 
+            onchange: 'this.form.submit()' %> 
         <% end %>
       </aside>
       <%= image_tag "logo.svg", alt: "Your Book Store" %>

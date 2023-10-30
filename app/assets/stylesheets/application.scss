@@ -4,56 +4,28 @@ body {
   margin: 0;
   padding: 0;
 }
-/* Header styles */
 header.main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #141; /* Update with your desired background color */
-  padding: 10px 20px;
-  color: white;
+  text-align: center; // center on mobile
+  @media (min-width: 30em) {
+    text-align: left; // left align on desktop
+  }
+  background: #282;
+  margin: 0;
+  h1 {
+    display: none;
+  }
 }
 
-.locale{
-  float: left;
-  margin: 1em;
+.notice, #notice {
+  background: #ffb;
+  border-radius: 0.5em;
+  border: solid 0.177em #882;
+  color: #882;
+  font-weight: bold;
+  margin-bottom: 1em;
+  padding: 1em 1.414em;
+  text-align: center;
 }
-
-/* Logo styles */
-header.main img {
-  width: 150px; /* Adjust the logo width as needed */
-  height: auto;
-}
-
-/* Title styles */
-header.main h1 {
-  font-size: 24px; /* Adjust the font size as needed */
-}
-
-/* Cart button styles */
-.cart-button {
-  display: flex;
-  align-items: center;
-}
-
-.cart-button .button {
-  color: rgb(255, 255, 255);
-  padding: 10px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.cart-quantity {
-  color: white;
-  padding: 2px 6px;
-  font-size: 14px; 
- }
-
-
-//
-//
 .content {
   margin: 0;
   padding: 0;
@@ -77,6 +49,43 @@ header.main h1 {
       text-align: left; // desktop nav is left-aligned
       padding: 1em;     // and needs more padding
     }
+
+    #cart {
+      article {
+        h2 {
+          margin-top: 0;
+        }
+        background: white;
+        border-radius: 0.5em;
+        margin: 1em;
+        padding: 1.414em;
+        @media (min-width: 30em) {
+          margin: 0; // desktop doesn't need this margin
+        }
+      }
+    }
+
+nav.logged_in_nav {
+  border-top: solid thin #bfb;
+  padding: 0.354em 0;
+  margin-top: 0.354em;
+  input[type="submit"] {
+    // Make the logout button look like a
+    // link, so it matches the nav style
+    background: none;
+    border: none;
+    color: #bfb;
+    font-size: 1em;
+    letter-spacing: 0.354em;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+  }
+  input[type="submit"]:hover {
+    color: white;
+  }
+}
+
     ul {
       list-style: none;
       margin: 0;
@@ -104,34 +113,9 @@ header.main h1 {
     padding: 0.5em;
   }
 }
-//
-.notice, #notice {
-  background: #ffb;
-  border-radius: 0.5em;
-  border: solid 0.177em #882;
-  color: #882;
-  font-weight: bold;
-  margin-bottom: 1em;
-  padding: 1em 1.414em;
-  text-align: center;
-  }
-  
-  #cart {
-    article {
-    h2 {
-    margin-top: 0;
-    }
-    background: white;
-    border-radius: 0.5em;
-    margin: 1em;
-    padding: 1.414em;
-    @media (min-width: 30em) {
-    margin: 0; // desktop doesn't need this margin
-    }
-    }
-    }
 
-    
+// 
+
 .depot_form {
   padding: 0 1em;
   h1 {
@@ -153,8 +137,6 @@ header.main h1 {
     box-sizing: border-box;
     font-size: 1em;
     padding: 0.5em;
-    //
-    //
     width: 100%;
   }
   label {
@@ -172,7 +154,7 @@ header.main h1 {
   input[type="submit"]:hover {
     background-color: #9d9;
   }
-  
+  // Also, clean up the error styling
   #error_explanation {
     background-color: white;
     border-radius: 1em;
@@ -209,5 +191,50 @@ header.main h1 {
       background: pink;
     }
   }
+}
+
+
+.locale{
+  float: right;
+  margin: 1em;
+}
+
+
+header.main img {
+  width: 150px; 
+  height: auto;
+}
+
+
+header.main h1 {
+  font-size: 24px; 
+}
+
+
+.cart-button {
+  display: flex;
+  align-items: center;
+  float: right;
 
 }
+
+.cart-button .button {
+  color: rgb(255, 255, 255);
+  padding:  2px 6px;
+
+  margin-left: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+
+}
+
+.cart-quantity {
+  color: rgb(255, 255, 255);
+  padding: 2px 6px;
+  font-size: 14px; 
+  margin-left: 10px;
+  margin-top: 15px;
+ }
+
+
+    
