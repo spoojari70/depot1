@@ -1,6 +1,7 @@
 require 'pago'
 class Order < ApplicationRecord
   has_many :line_items, dependent: :destroy
+  belongs_to :cart, optional: true
   enum pay_type: {
     "Cod" => 0,
     "Credit card" => 1,

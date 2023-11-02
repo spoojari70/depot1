@@ -4,6 +4,13 @@
 
 <h1><%= t('.title_html') %></h1>
 
+<div class="search-bar">
+  <%= form_tag(store_index_path, method: :get, class: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by name" %>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>
+
 
 <ul class="catalog">
   <% cache @products do %>
@@ -26,3 +33,5 @@
     <% end %>
   <% end %>
 </ul>
+
+<%= paginate @products %>

@@ -4,6 +4,13 @@
 
 <h1>Products</h1>
 
+<div class="search-bar">
+  <%= form_tag(producth_path, method: :get, class: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by name" %>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>
+
 <table>
   <tfoot>
     <tr>
@@ -44,3 +51,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @products %>
