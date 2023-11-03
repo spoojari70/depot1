@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_01_093746) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_03_063008) do
   create_table "action_mailbox_inbound_emails", charset: "utf8mb3", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.string "message_id", null: false
@@ -84,6 +84,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_093746) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "product_categories", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_categories_products", id: false, charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "product_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_category_id"], name: "index_product_categories_products_on_product_category_id"
+    t.index ["product_id"], name: "index_product_categories_products_on_product_id"
+  end
+
   create_table "products", charset: "utf8mb3", force: :cascade do |t|
     t.string "title"
     t.text "decription"
@@ -116,4 +131,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_093746) do
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
+  add_foreign_key "product_categories_products", "product_categories"
+  add_foreign_key "product_categories_products", "products"
 end

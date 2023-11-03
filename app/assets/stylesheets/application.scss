@@ -249,7 +249,23 @@ header.main h1 {
 }
 
 .search-form input[type="text"] {
-  padding: 3px; /* Add padding to the input field */
-  border: 1px solid #031105; /* Add a border for better appearance */
-  width: 200px; /* Set the width of the input field */
+  padding: 3px; 
+  border: 1px solid #031105; 
+  width: 200px; 
+}
+
+.pagination {
+  text-align: center;
+  padding: 1em;
+}
+
+.pagination .page,
+.pagination .next,
+.pagination .last {
+  display: inline-block;
+  margin: 0 5px;
+  color: rgb(19, 18, 18);
+}
+.page::before {
+  color: white; 
 }

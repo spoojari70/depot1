@@ -6,7 +6,7 @@
 
 <div class="search-bar">
   <%= form_tag(store_index_path, method: :get, class: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search by name" %>
+    <%= text_field_tag :search, params[:search], placeholder: "" %>
     <%= submit_tag "Search" %>
   <% end %>
 </div>
@@ -27,6 +27,10 @@
           </div>
             <%= button_to t('.add_html'), 
             line_items_path(product_id: product, locale: I18n.locale),
+            remote: true %>
+
+            <%= button_to ('*'), 
+            line_items_path(product_id: product),
             remote: true %>
         </li>
       <% end %>
