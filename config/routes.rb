@@ -16,11 +16,13 @@ Rails.application.routes.draw do
 
   resources :support_requests, only: [ :index, :update ]
 
-  
+
   scope '(:locale)' do
     resources :orders
     resources :line_items
     resources :carts
+    resources :wish_items
+    resources :wishlists
     root 'store#index', as: 'store_index'
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_03_063008) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_09_103728) do
   create_table "action_mailbox_inbound_emails", charset: "utf8mb3", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.string "message_id", null: false
@@ -126,6 +126,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_063008) do
     t.boolean "admin", default: false
   end
 
+  create_table "wishlists", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_wishlists_on_product_id"
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "line_items", "carts"
@@ -133,4 +142,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_063008) do
   add_foreign_key "line_items", "products"
   add_foreign_key "product_categories_products", "product_categories"
   add_foreign_key "product_categories_products", "products"
+  add_foreign_key "wishlists", "products"
+  add_foreign_key "wishlists", "users"
 end

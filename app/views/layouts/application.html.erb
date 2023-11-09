@@ -7,7 +7,7 @@
       Your Book Store
     </title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "application",
+    <%= stylesheet_link_tag "application", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
     media: "all",
     "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
@@ -31,17 +31,17 @@
       <h1>
         <%= @page_title %>
       </h1>
+      <i class="fa-regular fa-cart-shopping fa-fade" style="color: #22ad10;" aria-hidden="true"></i>
+      <i class="fa fa-shopping-cart" style="font-size:24px" aria-hidden="true"></i>
       <% if session[:cart_id].present? %>
-        <div class="cart-button">
+        <div class="cart-button" >
           <%= link_to "Cart", cart_path(session[:cart_id]), class: "button" %>
             <div><span id="cart-quantity",  remote: true><%= total_cart_item %></span></div> 
         </div>
-
       <% else %>
-        <!-- Handle the case when session[:cart_id] is not present -->
         <p>Cart is empty</p>
       <% end %>
-
+      
     </header>
 
     <section class="content">
