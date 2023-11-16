@@ -1,9 +1,11 @@
 class Product < ApplicationRecord
   paginates_per 3
   has_many :line_items
-  has_many :wish_items
-  has_many :orders, through: :line_items
 
+  has_many :wishlists
+  has_many :users, through: :wishlists
+
+  has_many :orders, through: :line_items
   has_and_belongs_to_many :product_categories
 
   before_destroy :ensure_not_referenced_by_any_line_item

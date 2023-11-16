@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'
 
+  resources :products do
+    resource :wishlists, only: [:create, :destroy]
+  end
+
   resources :users
   resources :products do
     get :who_bought, on: :member
@@ -21,8 +25,6 @@ Rails.application.routes.draw do
     resources :orders
     resources :line_items
     resources :carts
-    resources :wish_items
-    resources :wishlists
     root 'store#index', as: 'store_index'
   end
 end

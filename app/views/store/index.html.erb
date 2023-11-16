@@ -29,8 +29,10 @@
             line_items_path(product_id: product, locale: I18n.locale),
             remote: true %>
 
-            <%= button_to '*',
-            wish_items_path(product_id: product)%>
+            <%= button_to "*",
+            product_wishlists_path(product_id: product), method: :post %>
+
+
         </li>
       <% end %>
     <% end %>

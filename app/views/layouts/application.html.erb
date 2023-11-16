@@ -30,17 +30,14 @@
       <%= image_tag "logo.svg", alt: "Your Book Store" %>
       <h1>
         <%= @page_title %>
-      </h1>
-      <i class="fa-regular fa-cart-shopping fa-fade" style="color: #22ad10;" aria-hidden="true"></i>
-      <i class="fa fa-shopping-cart" style="font-size:24px" aria-hidden="true"></i>
-      <% if session[:cart_id].present? %>
+      </h1> 
         <div class="cart-button" >
           <%= link_to "Cart", cart_path(session[:cart_id]), class: "button" %>
             <div><span id="cart-quantity",  remote: true><%= total_cart_item %></span></div> 
         </div>
-      <% else %>
-        <p>Cart is empty</p>
-      <% end %>
+        <%# <div class="cart-button" >
+           <%= link_to "Add to Wishlist", product_wishlist_path(@product), method: :post %>
+        <%# </div> %>
       
     </header>
 
