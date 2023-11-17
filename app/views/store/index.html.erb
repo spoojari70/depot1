@@ -30,8 +30,7 @@
             remote: true %>
 
             <%= button_to "*",
-            product_wishlists_path(product_id: product), method: :post %>
-
+             add_to_wishlist_path(product_id: product), method: :post %>
 
         </li>
       <% end %>

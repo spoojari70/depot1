@@ -1,36 +1,35 @@
 class WishlistsController < ApplicationController
-  before_action :find_current_user
 
-  def create
-    product = Product.find(params[:product_id])
+  def show
+    user_id = session[:user_id]
+    @user = User.find(user_id)
+    @wishlist_products = @user.products
+  end
 
-    @wishlist_item = @current_user.build(product: product)
+  def add_to_wishlist
+    user_id = session[:user_id]
+    product_id = params[:product_id]
 
-    respond_to do |format|
-      if @wishlist.save
-        format.html { redirect_to product, notice: 'Product added to your wishlist.' }
-      else
-        format.html { redirect_to product, notice: 'Failed to add product to wishlist.' }
+    user = User.find(user_id)
+    product = Product.find(product_id)
+
+    if user.products.include?(product)
+      user.products.delete(product)
+      respond_to do |format|
+        format.html { redirect_to store_index_url, notice: "Removed from your wishlist." }
+        format.json { render json: { message: "Product removed from wishlist" } }
+      end
+    else
+      if user.wishlists.count > 20
+        oldest_item = user.wishlists.order(created_at: :asc).first
+        oldest_item.destroy
+      end
+
+      user.products << product
+      respond_to do |format|
+        format.html { redirect_to store_index_url, notice: "Added to your wishlist." }
+        format.json { render json: { message: "Product added to wishlist" } }
       end
     end
   end
-
-  def destroy
-    @wishlist_item = Wishlist.find(params[:id])
-
-    respond_to do |format|
-      if @wishlist_item.destroy
-        format.html { redirect_to @wishlist_item.product, notice: 'Removed product from wishlist.' }
-      else
-        format.html { redirect_to @wishlist_item.product, notice: 'Failed to remove product from wishlist.' }
-      end
-    end
-  end
-
-  private
-
-  def find_current_user
-    @current_user = User.find_by(id: session[:user_id])
-  end
-
 end
