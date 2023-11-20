@@ -2,13 +2,20 @@
 
 <h1>Wishlists</h1>
 
-<div id="wishlists">
-  <% @wishlists.each do |wishlist| %>
-    <%= render wishlist %>
-    <p>
-      <%= link_to "Show this wishlist", wishlist %>
-    </p>
+
+<ul class="catalog">
+  <% @wishlist_products.each do |wishlist_product| %>
+    <li>
+      <%= image_tag(wishlist_product.image_url) %>
+      <h2><%= wishlist_product.title %></h2>
+      <div class="price">
+        <%= number_to_currency(wishlist_product.price, locale: I18n.locale) %>
+      </div>
+      <%= button_to t('.add_html'), line_items_path(product_id: wishlist_product.id, locale: I18n.locale), remote: true %>
+    </li>
   <% end %>
-</div>
+</ul>
+
+
 
 <%= link_to "New wishlist", new_wishlist_path %>

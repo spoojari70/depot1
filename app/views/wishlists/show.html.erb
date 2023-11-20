@@ -1,39 +1,5 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>My Wishlist</h1>
-    <% @products.each do |product| %>
-      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+<%= render @wishlist_products %>
 
-        <td class="image">
-          <%= image_tag(product.image_url, class: 'list_image') %>
-        </td>
 
-        <td class="decription">
-          <h1><%= product.title %></h1>
-          <p>
-            <%= truncate(strip_tags(product.decription),
-                         length: 80) %>
-          </p>
-        </td>
-
-        <td class="actions">
-          <ul>
-            <li><%= link_to 'Show', product %></li>
-            <li><%= link_to 'Edit', edit_product_path(product) %></li>
-            <li>
-              <%= link_to 'Destroy',
-                           product,
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' } %>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    <% end %>
-
-<div>
-  <%= link_to "Edit this wishlist", edit_wishlist_path(@wishlist) %> |
-  <%= link_to "Back to wishlists", wishlists_path %>
-
-  <%= button_to "Destroy this wishlist", @wishlist, method: :delete %>
-</div>

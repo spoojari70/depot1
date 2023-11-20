@@ -35,9 +35,10 @@
           <%= link_to "Cart", cart_path(session[:cart_id]), class: "button" %>
             <div><span id="cart-quantity",  remote: true><%= total_cart_item %></span></div> 
         </div>
-        <%# <div class="cart-button" >
-           <%= link_to "Add to Wishlist", product_wishlist_path(@product), method: :post %>
-        <%# </div> %>
+
+         <div class="cart-button" >
+           <%= link_to "wishlist", wishlist_path(session[:user_id]), class: "button" %>
+         </div> 
       
     </header>
 
