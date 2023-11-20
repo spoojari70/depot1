@@ -5,6 +5,9 @@ class ProductsController < ApplicationController
   def index
     if params[:search]
       @products = Product.where("title LIKE ?", "%#{params[:search]}%").page(params[:page]).per(3)
+      if @products.empty?
+        flash.now[:notice] = "Products Unavailable."
+      end
     else
       @products = Product.page(params[:page])
     end
@@ -71,7 +74,6 @@ class ProductsController < ApplicationController
       end
     end
   end
-
 
   private
      def set_product

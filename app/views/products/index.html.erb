@@ -5,7 +5,7 @@
 <h1>Products</h1>
 
 <div class="search-bar">
-  <%= form_tag(producth_path, method: :get, class: "search-form") do %>
+  <%= form_tag(products_path, method: :get, class: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search by name" %>
     <%= submit_tag "Search" %>
   <% end %>
@@ -31,21 +31,8 @@
           <h1><%= product.title %></h1>
           <p>
             <%= truncate(strip_tags(product.decription),
-                         length: 80) %>
+                         length: 140) %>
           </p>
-        </td>
-
-        <td class="actions">
-          <ul>
-            <li><%= link_to 'Show', product %></li>
-            <li><%= link_to 'Edit', edit_product_path(product) %></li>
-            <li>
-              <%= link_to 'Destroy',
-                           product,
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' } %>
-            </li>
-          </ul>
         </td>
       </tr>
     <% end %>

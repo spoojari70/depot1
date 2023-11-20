@@ -9,7 +9,8 @@ class StoreController < ApplicationController
       redirect_to store_index_url(locale: params[:set_locale])
     else
       if params[:search]
-        @products = Product.where("title LIKE ?", "%#{params[:search]}%").page(params[:page]).per(5)
+        @products = Product.where("title LIKE :search OR decription LIKE :search",
+           search: "%#{params[:search]}%").page(params[:page]).per(5)
         if @products.empty?
           flash.now[:notice] = "Products Unavailable."
         end
