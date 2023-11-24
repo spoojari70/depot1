@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get :who_bought, on: :member
   end
   get '/wishlist', to: 'wishlists#show', as: 'wishlist'
-  
+
   resources :support_requests, only: [ :index, :update ]
 
 
