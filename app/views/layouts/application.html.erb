@@ -76,7 +76,10 @@
               <a><%= button_to 'Logout', logout_path, method: :delete %></a>
         <% end %>
       </nav>
+      
       <main class='<%= controller.controller_name %>'>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
         <%= yield %>
       </main>
     </section>

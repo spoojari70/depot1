@@ -14,31 +14,30 @@ class WishlistsController < ApplicationController
     product = Product.find(product_id)
 
     if user.products.include?(product)
-      user.products.delete(product)
-      respond_to do |format|
-        format.html { redirect_to store_index_url, notice: "Removed from your wishlist." }
-        format.json { render json: { message: "Product removed from wishlist" } }
-      end
+      destroy(user, product)
     else
-      if user.wishlists.count > 20
-        oldest_item = user.wishlists.order(created_at: :asc).first
-        oldest_item.destroy
-      end
-
-      user.products << product
-      respond_to do |format|
-        format.html { redirect_to store_index_url, notice: "Added to your wishlist." }
-        format.json { render json: { message: "Product added to wishlist" } }
-      end
+      add_product_to_wishlist(user, product)
     end
+
   end
 
-  def destroy
-    @user.destroy
+  def destroy(user, product)
+    user.products.delete(product)
+    redirect_to store_index_url, notice: "Removed from your wishlist."
+  end
 
+
+  private
+
+  def add_product_to_wishlist(user, product)
+    if user.wishlists.count > 20
+      oldest_item = user.wishlists.order(created_at: :asc).first
+      oldest_item.destroy
+    end
+
+    user.products << product
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to store_index_url, notice: "Added to your wishlist." }
     end
   end
 

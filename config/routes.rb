@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :devise_users
   get 'admin' => 'admin#index'
   controller :sessions do
     get 'login' => :new

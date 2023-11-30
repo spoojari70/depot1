@@ -36,7 +36,7 @@ gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
 
 gem 'kaminari'
-
+gem 'devise', '~> 4.2'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
