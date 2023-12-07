@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorize
+  skip_before_action :authenticate_user!
 
   def new
   end
 
   def create
-     @user = DeviseUser.find_by(name: params[:name])
+     @user = User.find_by(email: params[:email])
 
      if @user && @user.valid_password?(params[:password])
       sign_in(@user)

@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :devise_users
-  get 'admin' => 'admin#index'
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
+  }
 
-  get 'sessions/create'
-  get 'sessions/destroy'
+  get 'admin' => 'admin#index'
 
   resources :products do
     resource :wishlists, only: [:create, :destroy]

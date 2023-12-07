@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'c0008ef05a34ea130bf8a47b6c99cf9c09f27ba238f8ff0896b1ebdfcb978e0123773c20667d2143e92d570b61832556b66ff533d213145aff03905391b9119c'
+  # config.secret_key = '7ef498ed4abcaf01506ea6cdfb23f12ebdfcff9ec5d632e0b52f61a1d5fb0381b7e807801a7524ee7f98bcb34e6a939965c30e93ea6f3bf7298068d953419ee4'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -46,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  config.authentication_keys = [:name]
+  # config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -58,7 +58,7 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [:name]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '72d1cdda9f90cfb1cb9c4bfff14e40424713e1eab9d6fab335c25d853212385b4e32a84c85d54d6c6f70933027ee9022f34656a5ca11bc6ba4b0c7540dff620f'
+  # config.pepper = '521cffb2ecc740c1cd7f959d383cb6a1f72e337688f6f9903e0af4ab472d53531872a85d72aa7a6df0b194aff4386e01443d126f995cef7e5ee92e730c41988e'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false

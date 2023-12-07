@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  skip_before_action :authorize
+  skip_before_action :authenticate_user!
 
 
   # GET /users or /users.json
@@ -35,11 +35,8 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to users_url,
            notice: "Hello #{@user.name} !" }
-
-        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -80,6 +77,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :admin)
+      params.require(:user).permit(:email, :password, :password_confirmation, :admin)
     end
 end

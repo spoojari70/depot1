@@ -40,12 +40,10 @@
            <%= link_to "wishlist", wishlist_path(session[:user_id]), class: "button" %>
          </div> 
 
-          <%# <div class="wishlist-button"> %>
-            <%# <%= link_to wishlist_path(session[:user_id]), class: "button" do %> 
-            <%# <%= image_tag "wishlist.png", alt: "Wishlist button" %> 
-            <%# <% end %> 
-          <%# </div> %>
-      
+         <div class="cart-button" >
+          <%= link_to "Sign Up",  new_user_registration_path, class: "button" %>
+          <%= link_to "Log in", new_user_session_path, class: "button" %>
+         </div>
     </header>
 
     <section class="content">
@@ -78,8 +76,6 @@
       </nav>
       
       <main class='<%= controller.controller_name %>'>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
         <%= yield %>
       </main>
     </section>

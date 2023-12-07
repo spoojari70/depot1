@@ -1,4 +1,6 @@
 class WishlistsController < ApplicationController
+  before_action :authenticate_user!
+
 
   def show
     user_id = session[:user_id]
@@ -42,3 +44,5 @@ class WishlistsController < ApplicationController
   end
 
 end
+
+
